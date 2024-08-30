@@ -36,7 +36,7 @@
                             A
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="#">Logout</a></li>
+                            <li><a class="dropdown-item" asp-controller="Home" asp-action="Logout" >Logout</a></li>
                         </ul>
                     </div>
                 </div>
@@ -47,7 +47,12 @@
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
-        @await Component.InvokeAsync("Toast", TempData["Message"])
+        
+        @* @await Component.InvokeAsync("Toast", TempData["Message"]) *@
+        @* @await Component.InvokeAsync("Toast", new { Message = TempData["Message"]}) *@
+        @* 使用 html tag 的方式都要轉為小寫，中間 *@
+        <vc:toast message="@TempData["Message"]"></vc:toast>
+        
     </div>
     <footer class="border-top footer text-muted">
         <div class="container">

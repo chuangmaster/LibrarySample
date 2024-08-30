@@ -61,5 +61,12 @@ namespace LibrarySample.Controllers
             }
             return RedirectToAction("Error", new { Message = "ID or Password is invalid." });
         }
+
+        [HttpGet]
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction("Index");
+        }
     }
 }
