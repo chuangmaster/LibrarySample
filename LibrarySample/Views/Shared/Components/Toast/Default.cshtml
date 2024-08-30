@@ -1,0 +1,9 @@
+﻿@model string
+@if (!string.IsNullOrEmpty(Model))
+{
+    <div class="toast toast-fade show position-fixed bottom-0 end-0 p-3 bg-danger" style="z-index:1000">
+        <div class="toast-body">
+            @Model
+        </div>
+    </div>
+}

@@ -31,8 +31,14 @@ namespace LibrarySample.Controllers
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error(string errorMessage)
+        public IActionResult Error(string message)
         {
+            if (!string.IsNullOrEmpty(message))
+            {
+                //alert error message
+                TempData["Message"] = message;
+                return RedirectToAction("Index");
+            }
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
@@ -50,10 +56,10 @@ namespace LibrarySample.Controllers
                 else
                 {
                     //redrect to error page
-                    return RedirectToAction("Error", new { errorMessage = "ID or Password is invalid." });
+                    return RedirectToAction("Error", new { Message = "ID or Password is invalid." });
                 }
             }
-            return RedirectToAction("Error", new { errorMessage = "ID or Password is invalid." });
+            return RedirectToAction("Error", new { Message = "ID or Password is invalid." });
         }
     }
 }
